@@ -12,4 +12,14 @@ sealed interface AppRoutes {
 
     @Serializable
     data object Items : AppRoutes, NavKey
+
+    @Serializable
+    data class ChampionResume(
+        val championId: String
+    ) : AppRoutes, NavKey
+
+    @Serializable
+    data class ChampionDetail(
+        val championId: String
+    ) : AppRoutes, NavKey
 }

@@ -21,3 +21,7 @@ dependencyResolutionManagement {
 
 rootProject.name = "Legends Companion"
 include(":app")
+include(":core")
+include(":feature:champions")
+include(":feature:items")
+include(":common:resources")

@@ -26,14 +26,16 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.wcsm.legendscompanion.R
-import com.wcsm.legendscompanion.presentation.ui.components.PageHeader
-import com.wcsm.legendscompanion.presentation.ui.theme.BackgroundColor
-import com.wcsm.legendscompanion.presentation.ui.theme.CinzelFontFamily
-import com.wcsm.legendscompanion.presentation.ui.theme.LegendsCompanionTheme
+import com.wcsm.core.presentation.ui.components.PageHeader
+import com.wcsm.core.presentation.ui.theme.BackgroundColor
+import com.wcsm.core.presentation.ui.theme.CinzelFontFamily
+import com.wcsm.core.presentation.ui.theme.LegendsCompanionTheme
+import com.wcsm.resources.R as ResourcesR
 
 @Composable
-fun ChampionsView() {
+fun ChampionsView(
+    onChampionClick: (String) -> Unit
+) {
     ChampionsTemplate()
 }
 
@@ -58,7 +60,7 @@ private fun ChampionsTemplate() {
                 items(80) { index ->
                     Column(horizontalAlignment = Alignment.CenterHorizontally) {
                         Image(
-                            painter = painterResource(R.drawable.square_aatrox_test),
+                            painter = painterResource(ResourcesR.drawable.square_aatrox_test),
                             contentDescription = null,
                             modifier = Modifier.size(80.dp)
                         )

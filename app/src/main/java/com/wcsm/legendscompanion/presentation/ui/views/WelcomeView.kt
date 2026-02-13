@@ -24,13 +24,13 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.wcsm.legendscompanion.R
-import com.wcsm.legendscompanion.presentation.ui.components.PrimaryButton
-import com.wcsm.legendscompanion.presentation.ui.components.SetSystemBarsStyle
-import com.wcsm.legendscompanion.presentation.ui.theme.CinzelFontFamily
-import com.wcsm.legendscompanion.presentation.ui.theme.InterFontFamily
-import com.wcsm.legendscompanion.presentation.ui.theme.LegendsCompanionTheme
-import com.wcsm.legendscompanion.utils.UnitCallback
+import com.wcsm.core.presentation.ui.components.PrimaryButton
+import com.wcsm.core.presentation.ui.components.SetSystemBarsStyle
+import com.wcsm.core.presentation.ui.theme.CinzelFontFamily
+import com.wcsm.core.presentation.ui.theme.InterFontFamily
+import com.wcsm.core.presentation.ui.theme.LegendsCompanionTheme
+import com.wcsm.resources.R as ResourcesR
+import com.wcsm.core.utils.UnitCallback
 
 @Composable
 fun WelcomeView(
@@ -51,7 +51,7 @@ private fun WelcomeTemplate(
         modifier = Modifier
             .fillMaxSize()
             .paint(
-                painter = painterResource(R.drawable.background_image),
+                painter = painterResource(ResourcesR.drawable.background_image),
                 contentScale = ContentScale.Crop
             )
     ) {

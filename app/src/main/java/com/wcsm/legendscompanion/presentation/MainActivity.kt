@@ -14,19 +14,16 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
-import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.viewModelScope
+import com.wcsm.core.presentation.ui.theme.LegendsCompanionTheme
 import com.wcsm.legendscompanion.domain.model.BaseFlowViewModel
 import com.wcsm.legendscompanion.domain.model.BaseResponse
 import com.wcsm.legendscompanion.domain.repository.ChampionRepository
 import com.wcsm.legendscompanion.presentation.navigation.AppNavigation
-import com.wcsm.legendscompanion.presentation.ui.theme.LegendsCompanionTheme
 import dagger.hilt.android.AndroidEntryPoint
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
@@ -40,8 +37,8 @@ class MainActivity : ComponentActivity() {
 
         setContent {
             LegendsCompanionTheme {
-                //AppNavigation() // Uso Real
-                TestScreen() // Uso de Teste
+                AppNavigation() // Uso Real
+                //TestScreen() // Uso de Teste
             }
         }
     }

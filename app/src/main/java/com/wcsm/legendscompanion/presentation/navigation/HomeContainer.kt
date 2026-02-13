@@ -21,18 +21,21 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
+import androidx.navigation3.runtime.NavBackStack
+import androidx.navigation3.runtime.NavKey
+import com.wcsm.core.presentation.ui.components.SetSystemBarsStyle
+import com.wcsm.core.presentation.ui.theme.BackgroundColor
+import com.wcsm.core.presentation.ui.theme.LightBeigeColor
+import com.wcsm.core.presentation.ui.theme.LightGrayColor
 import com.wcsm.legendscompanion.R
-import com.wcsm.legendscompanion.presentation.ui.components.SetSystemBarsStyle
-import com.wcsm.legendscompanion.presentation.ui.theme.BackgroundColor
-import com.wcsm.legendscompanion.presentation.ui.theme.LightBeigeColor
-import com.wcsm.legendscompanion.presentation.ui.theme.LightGrayColor
 import com.wcsm.legendscompanion.presentation.ui.views.ChampionsView
 import com.wcsm.legendscompanion.presentation.ui.views.ItemsView
 import kotlinx.coroutines.launch
 
 @Composable
 fun HomeContainer(
-    currentRoute: AppRoutes
+    currentRoute: AppRoutes,
+    backStack: NavBackStack<NavKey>
 ) {
     SetSystemBarsStyle(darkIcons = false)
 
@@ -112,7 +115,11 @@ fun HomeContainer(
                 .padding(padding)
         ) { page ->
             when (page) {
-                0 -> ChampionsView()
+                0 -> ChampionsView(
+                    onChampionClick = { championId ->
+                        backStack.add(AppRoutes.ChampionResume(championId))
+                    }
+                )
                 1 -> ItemsView()
             }
         }
