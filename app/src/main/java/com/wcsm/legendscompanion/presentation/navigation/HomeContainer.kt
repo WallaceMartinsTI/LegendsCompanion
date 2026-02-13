@@ -28,7 +28,7 @@ import com.wcsm.core.presentation.ui.theme.BackgroundColor
 import com.wcsm.core.presentation.ui.theme.LightBeigeColor
 import com.wcsm.core.presentation.ui.theme.LightGrayColor
 import com.wcsm.legendscompanion.R
-import com.wcsm.legendscompanion.presentation.ui.views.ChampionsView
+import com.wcsm.champions.presentation.ui.views.ChampionsView
 import com.wcsm.legendscompanion.presentation.ui.views.ItemsView
 import kotlinx.coroutines.launch
 

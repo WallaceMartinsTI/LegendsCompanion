@@ -1,4 +1,4 @@
-package com.wcsm.legendscompanion.domain.model
+package com.wcsm.core.domain.model
 
 sealed class BaseResponse<out T> {
     data object Loading : BaseResponse<Nothing>()

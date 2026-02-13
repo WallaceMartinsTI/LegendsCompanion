@@ -1,6 +1,6 @@
-package com.wcsm.champions.data.remote.dto
+package com.wcsm.champions.domain.model
 
-data class ChampionInfoDto(
+data class ChampionInfo(
     val attack: Int,
     val defense: Int,
     val magic: Int,

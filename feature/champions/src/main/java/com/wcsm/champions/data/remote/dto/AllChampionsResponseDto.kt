@@ -1,4 +1,4 @@
-package com.wcsm.legendscompanion.data.remote.dto
+package com.wcsm.champions.data.remote.dto
 
 data class AllChampionsResponseDto(
     val type: String,

@@ -1,8 +1,8 @@
 package com.wcsm.legendscompanion.di
 
-import com.wcsm.legendscompanion.data.remote.repository.ChampionRepositoryImpl
-import com.wcsm.legendscompanion.data.remote.service.RiotAPIService
-import com.wcsm.legendscompanion.domain.repository.ChampionRepository
+import com.wcsm.champions.data.repository.ChampionRepositoryImpl
+import com.wcsm.champions.data.remote.service.RiotAPIService
+import com.wcsm.champions.domain.repository.ChampionRepository
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -18,13 +18,5 @@ object RiotAPIModule {
     @Singleton
     fun provideRiotAPIService(retrofit: Retrofit): RiotAPIService {
         return retrofit.create(RiotAPIService::class.java)
-    }
-
-    @Provides
-    @Singleton
-    fun provideChampionRepository(
-        service: RiotAPIService
-    ): ChampionRepository {
-        return ChampionRepositoryImpl(service = service)
     }
 }

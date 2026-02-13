@@ -1,4 +1,4 @@
-package com.wcsm.legendscompanion.domain.model
+package com.wcsm.core.domain.model
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope

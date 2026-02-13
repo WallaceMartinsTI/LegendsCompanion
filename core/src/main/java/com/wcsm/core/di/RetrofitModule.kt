@@ -1,4 +1,4 @@
-package com.wcsm.legendscompanion.di
+package com.wcsm.core.di
 
 import dagger.Module
 import dagger.Provides

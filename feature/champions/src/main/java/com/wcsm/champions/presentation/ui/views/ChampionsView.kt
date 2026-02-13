@@ -1,5 +1,6 @@
-package com.wcsm.legendscompanion.presentation.ui.views
+package com.wcsm.champions.presentation.ui.views
 
+import android.util.Log
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
@@ -14,8 +15,12 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.lazy.grid.GridCells
 import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
+import androidx.compose.foundation.lazy.grid.items
+import androidx.compose.material3.Button
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Brush
@@ -26,21 +31,60 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.hilt.navigation.compose.hiltViewModel
+import androidx.lifecycle.compose.collectAsStateWithLifecycle
+import coil3.compose.AsyncImage
+import com.wcsm.champions.presentation.ui.viewmodels.ChampionUiState
+import com.wcsm.champions.presentation.ui.viewmodels.ChampionViewModel
 import com.wcsm.core.presentation.ui.components.PageHeader
 import com.wcsm.core.presentation.ui.theme.BackgroundColor
 import com.wcsm.core.presentation.ui.theme.CinzelFontFamily
 import com.wcsm.core.presentation.ui.theme.LegendsCompanionTheme
+import com.wcsm.core.utils.UnitCallback
 import com.wcsm.resources.R as ResourcesR
 
 @Composable
 fun ChampionsView(
+    championViewModel: ChampionViewModel = hiltViewModel(),
     onChampionClick: (String) -> Unit
 ) {
-    ChampionsTemplate()
+    val uiState by championViewModel.uiState.collectAsStateWithLifecycle()
+
+    LaunchedEffect(championViewModel) {
+        championViewModel.fetchChampions()
+    }
+
+    ChampionsTemplate(
+        uiState = uiState,
+        onFetchChampions = {}
+    )
 }
 
 @Composable
-private fun ChampionsTemplate() {
+private fun ChampionsTemplate(
+    uiState: ChampionUiState,
+    onFetchChampions: UnitCallback
+) {
+    /*Column(
+        modifier = Modifier.fillMaxSize(),
+        horizontalAlignment = Alignment.CenterHorizontally,
+        verticalArrangement = Arrangement.Center
+    ) {
+
+        Button(onClick = onFetchChampions) {
+            Text("FAZER REQUEST")
+        }
+
+        Spacer(Modifier.height(32.dp))
+
+        when {
+            uiState.isLoading -> Text(text = "Carregando...", color = Color.White)
+
+            uiState.error != null -> Text(text = "Erro: ${uiState.error}", color = Color.White)
+
+            uiState.result.isNotEmpty() -> Text(text = uiState.result, color = Color.White)
+        }
+    }*/
     Column(
         modifier = Modifier.fillMaxSize().padding(horizontal = 16.dp),
         horizontalAlignment = Alignment.CenterHorizontally
@@ -57,7 +101,30 @@ private fun ChampionsTemplate() {
                 horizontalArrangement = Arrangement.spacedBy(16.dp),
                 contentPadding = PaddingValues(top = 32.dp, bottom = 32.dp)
             ) {
-                items(80) { index ->
+                items(
+                    items =uiState.champions,
+                    key = { it.id}
+                ) { champion ->
+                    Column(horizontalAlignment = Alignment.CenterHorizontally) {
+                        AsyncImage(
+                            // Aatrox.png
+                            model = "https://ddragon.leagueoflegends.com/cdn/16.3.1/img/champion/${champion.image}",
+                            contentDescription = null,
+                            modifier = Modifier.size(80.dp)
+                        )
+                        Text(
+                            text = champion.name,
+                            style = TextStyle(
+                                color = Color.White,
+                                fontFamily = CinzelFontFamily,
+                                fontWeight = FontWeight.SemiBold,
+                                letterSpacing = 2.sp
+                            ),
+                            modifier = Modifier.padding(top = 4.dp)
+                        )
+                    }
+                }
+                /*items(80) { index ->
                     Column(horizontalAlignment = Alignment.CenterHorizontally) {
                         Image(
                             painter = painterResource(ResourcesR.drawable.square_aatrox_test),
@@ -75,7 +142,7 @@ private fun ChampionsTemplate() {
                             modifier = Modifier.padding(top = 4.dp)
                         )
                     }
-                }
+                }*/
             }
 
             Box(
@@ -117,6 +184,9 @@ private fun ChampionsTemplate() {
 @Composable
 private fun ChampionsTemplatePreview() {
     LegendsCompanionTheme {
-        ChampionsTemplate()
+        ChampionsTemplate(
+            uiState = ChampionUiState(),
+            onFetchChampions = {}
+        )
     }
 }
