@@ -36,22 +36,12 @@ fun AppNavigation(
             }
             entry<AppRoutes.Champions> {
                 HomeContainer(
-                    currentRoute = AppRoutes.Champions,
-                    onNavigate = { route ->
-                        if (backStack.lastOrNull() != route) {
-                            backStack.add(route)
-                        }
-                    }
+                    currentRoute = AppRoutes.Champions
                 )
             }
             entry<AppRoutes.Items> {
                 HomeContainer(
-                    currentRoute = AppRoutes.Items,
-                    onNavigate = { route ->
-                        if (backStack.lastOrNull() != route) {
-                            backStack.add(route)
-                        }
-                    }
+                    currentRoute = AppRoutes.Items
                 )
             }
         },

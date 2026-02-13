@@ -3,6 +3,8 @@ package com.wcsm.legendscompanion.presentation.navigation
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.WindowInsets
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.pager.HorizontalPager
+import androidx.compose.foundation.pager.rememberPagerState
 import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.Icon
 import androidx.compose.material3.NavigationBar
@@ -11,6 +13,7 @@ import androidx.compose.material3.NavigationBarItemDefaults
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
@@ -22,14 +25,21 @@ import com.wcsm.legendscompanion.presentation.ui.theme.LightBeigeColor
 import com.wcsm.legendscompanion.presentation.ui.theme.LightGrayColor
 import com.wcsm.legendscompanion.presentation.ui.views.ChampionsView
 import com.wcsm.legendscompanion.presentation.ui.views.ItemsView
+import kotlinx.coroutines.launch
 
 @Composable
 fun HomeContainer(
-    currentRoute: AppRoutes,
-    onNavigate: (NavKey) -> Unit
+    currentRoute: AppRoutes
 ) {
-    val isChampionRouteSelected = currentRoute is AppRoutes.Champions
-    val isItemsRouteSelected = currentRoute is AppRoutes.Items
+    val pagerState = rememberPagerState(
+        initialPage = if (currentRoute is AppRoutes.Champions) 0 else 1,
+        pageCount = { 2 }
+    )
+
+    val coroutineScope = rememberCoroutineScope()
+
+    val isChampionRouteSelected = pagerState.currentPage == 0
+    val isItemsRouteSelected = pagerState.currentPage == 1
 
     Scaffold(
         containerColor = BackgroundColor,
@@ -46,7 +56,11 @@ fun HomeContainer(
                 ) {
                     NavigationBarItem(
                         selected = isChampionRouteSelected,
-                        onClick = { onNavigate(AppRoutes.Champions) },
+                        onClick = {
+                            coroutineScope.launch {
+                                pagerState.animateScrollToPage(0) // Champions
+                            }
+                        },
                         icon = {
                             Icon(
                                 painterResource(R.drawable.champion_nav_item),
@@ -64,7 +78,11 @@ fun HomeContainer(
                     )
                     NavigationBarItem(
                         selected = isItemsRouteSelected,
-                        onClick = { onNavigate(AppRoutes.Items) },
+                        onClick = {
+                            coroutineScope.launch {
+                                pagerState.animateScrollToPage(1) // Items
+                            }
+                        },
                         icon = {
                             Icon(
                                 painterResource(R.drawable.items_nav_item),
@@ -84,10 +102,14 @@ fun HomeContainer(
             }
         }
     ) { padding ->
-        when (currentRoute) {
-            AppRoutes.Champions -> ChampionsView(Modifier.padding(padding))
-            AppRoutes.Items -> ItemsView(Modifier.padding(padding))
-            else -> {}
+        HorizontalPager(
+            state = pagerState,
+            modifier = Modifier.padding(padding)
+        ) { page ->
+            when (page) {
+                0 -> ChampionsView()
+                1 -> ItemsView()
+            }
         }
     }
 }
