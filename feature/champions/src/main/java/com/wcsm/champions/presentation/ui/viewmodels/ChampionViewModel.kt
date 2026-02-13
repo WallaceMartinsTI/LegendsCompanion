@@ -2,11 +2,9 @@ package com.wcsm.champions.presentation.ui.viewmodels
 
 import androidx.lifecycle.viewModelScope
 import com.wcsm.champions.domain.model.Champion
-import com.wcsm.champions.domain.repository.ChampionRepository
 import com.wcsm.champions.domain.usecase.GetAllChampionsUseCase
 import com.wcsm.core.domain.model.BaseFlowViewModel
 import com.wcsm.core.domain.model.BaseResponse
-import com.wcsm.core.utils.UnitCallback
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.flow.update

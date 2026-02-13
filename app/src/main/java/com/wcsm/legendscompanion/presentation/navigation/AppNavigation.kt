@@ -12,6 +12,7 @@ import androidx.compose.ui.unit.sp
 import androidx.navigation3.runtime.entryProvider
 import androidx.navigation3.runtime.rememberNavBackStack
 import androidx.navigation3.ui.NavDisplay
+import com.wcsm.champions.presentation.ui.views.ChampionSummaryView
 import com.wcsm.legendscompanion.presentation.ui.views.WelcomeView
 
 @Composable
@@ -54,17 +55,7 @@ fun AppNavigation(
                 )
             }
             entry<AppRoutes.ChampionResume> { route ->
-                Column(
-                    modifier = Modifier.fillMaxSize(),
-                    horizontalAlignment = Alignment.CenterHorizontally,
-                    verticalArrangement = Arrangement.Center
-                ) {
-                    Text(
-                        text = "Tela de Champion Resume",
-                        color = Color.White,
-                        fontSize = 42.sp
-                    )
-                }
+                ChampionSummaryView()
                 /*ChampionResumeScreen(
                     championId = route.championId,
                     onBack = { backStack.removeLastOrNull() },
