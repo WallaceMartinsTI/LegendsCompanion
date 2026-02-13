@@ -1,11 +1,14 @@
 package com.wcsm.legendscompanion.presentation.ui.views
 
-import androidx.compose.foundation.background
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.WindowInsets
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.systemBars
+import androidx.compose.foundation.layout.windowInsetsPadding
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
@@ -23,6 +26,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.wcsm.legendscompanion.R
 import com.wcsm.legendscompanion.presentation.ui.components.PrimaryButton
+import com.wcsm.legendscompanion.presentation.ui.components.SetSystemBarsStyle
 import com.wcsm.legendscompanion.presentation.ui.theme.CinzelFontFamily
 import com.wcsm.legendscompanion.presentation.ui.theme.InterFontFamily
 import com.wcsm.legendscompanion.presentation.ui.theme.LegendsCompanionTheme
@@ -41,68 +45,76 @@ fun WelcomeView(
 private fun WelcomeTemplate(
     onEnterClick: UnitCallback
 ) {
-    Column(
+    SetSystemBarsStyle(darkIcons = false)
+
+    Box(
         modifier = Modifier
             .fillMaxSize()
             .paint(
                 painter = painterResource(R.drawable.background_image),
                 contentScale = ContentScale.Crop
-            ),
-        horizontalAlignment = Alignment.CenterHorizontally
-    ) {
-        Spacer(Modifier.height(80.dp))
-
-        Text(
-            text = "LEGENDS\nCOMPANION",
-            style = TextStyle(
-                brush = Brush.linearGradient(
-                    colors = listOf(
-                        Color(0xFFF0E6D2),
-                        Color(0xFFC8AA6F),
-                        Color(0xFF785A28)
-                    )
-                ),
-                fontFamily = CinzelFontFamily,
-                fontSize = 36.sp,
-                fontWeight = FontWeight.Black,
-                textAlign = TextAlign.Center,
-                lineHeight = 40.sp,
-                letterSpacing = 7.sp
             )
-        )
+    ) {
+        Column(
+            modifier = Modifier
+                .fillMaxSize()
+                .windowInsetsPadding(WindowInsets.systemBars),
+            horizontalAlignment = Alignment.CenterHorizontally
+        ) {
+            Spacer(Modifier.height(80.dp))
 
-        Text(
-            text = "EXPLORE CHAMPIONS AND ITEMS",
-            color = Color.White,
-            style = TextStyle(
-                fontFamily = InterFontFamily,
-                fontSize = 14.sp,
-                fontWeight = FontWeight.Light,
-                textAlign = TextAlign.Center,
-                lineHeight = 20.sp,
-                letterSpacing = 2.sp
-            ),
-            modifier = Modifier.padding(top = 12.dp)
-        )
+            Text(
+                text = "LEGENDS\nCOMPANION",
+                style = TextStyle(
+                    brush = Brush.linearGradient(
+                        colors = listOf(
+                            Color(0xFFF0E6D2),
+                            Color(0xFFC8AA6F),
+                            Color(0xFF785A28)
+                        )
+                    ),
+                    fontFamily = CinzelFontFamily,
+                    fontSize = 36.sp,
+                    fontWeight = FontWeight.Black,
+                    textAlign = TextAlign.Center,
+                    lineHeight = 40.sp,
+                    letterSpacing = 7.sp
+                )
+            )
 
-        Spacer(Modifier.weight(1f))
+            Text(
+                text = "EXPLORE CHAMPIONS AND ITEMS",
+                color = Color.White,
+                style = TextStyle(
+                    fontFamily = InterFontFamily,
+                    fontSize = 14.sp,
+                    fontWeight = FontWeight.Light,
+                    textAlign = TextAlign.Center,
+                    lineHeight = 20.sp,
+                    letterSpacing = 2.sp
+                ),
+                modifier = Modifier.padding(top = 12.dp)
+            )
 
-        PrimaryButton(
-            text = "ENTER",
-            onClick = onEnterClick
-        )
+            Spacer(Modifier.weight(1f))
 
-        Text(
-            text = "APP VERSION 1.0",
-            style = TextStyle(
-                fontFamily = InterFontFamily,
-                fontSize = 10.sp,
-                lineHeight = 15.sp,
-                letterSpacing = 2.sp
-            ),
-            color = Color(0x80C8AA6F),
-            modifier = Modifier.padding(top = 32.dp, bottom = 80.dp)
-        )
+            PrimaryButton(
+                text = "ENTER",
+                onClick = onEnterClick
+            )
+
+            Text(
+                text = "APP VERSION 1.0",
+                style = TextStyle(
+                    fontFamily = InterFontFamily,
+                    fontSize = 10.sp,
+                    lineHeight = 15.sp,
+                    letterSpacing = 2.sp
+                ),
+                color = Color(0x80C8AA6F),
+                modifier = Modifier.padding(top = 32.dp, bottom = 80.dp)
+            )
+        }
     }
 }
 

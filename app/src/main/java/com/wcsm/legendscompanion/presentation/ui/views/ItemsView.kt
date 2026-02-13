@@ -8,14 +8,15 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import com.wcsm.legendscompanion.presentation.ui.components.PageHeader
 
 @Composable
 fun ItemsView(modifier: Modifier = Modifier) {
     Column(
         modifier = modifier.fillMaxSize(),
-        horizontalAlignment = Alignment.CenterHorizontally,
-        verticalArrangement = Arrangement.Center
+        horizontalAlignment = Alignment.CenterHorizontally
     ) {
+        PageHeader(title = "ITEMS")
         Text(
             text = "Items View",
             color = Color.White

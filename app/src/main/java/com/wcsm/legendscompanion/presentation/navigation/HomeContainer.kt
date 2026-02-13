@@ -1,7 +1,10 @@
 package com.wcsm.legendscompanion.presentation.navigation
 
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.WindowInsets
+import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.navigationBars
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.pager.HorizontalPager
 import androidx.compose.foundation.pager.rememberPagerState
@@ -18,8 +21,8 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
-import androidx.navigation3.runtime.NavKey
 import com.wcsm.legendscompanion.R
+import com.wcsm.legendscompanion.presentation.ui.components.SetSystemBarsStyle
 import com.wcsm.legendscompanion.presentation.ui.theme.BackgroundColor
 import com.wcsm.legendscompanion.presentation.ui.theme.LightBeigeColor
 import com.wcsm.legendscompanion.presentation.ui.theme.LightGrayColor
@@ -31,6 +34,8 @@ import kotlinx.coroutines.launch
 fun HomeContainer(
     currentRoute: AppRoutes
 ) {
+    SetSystemBarsStyle(darkIcons = false)
+
     val pagerState = rememberPagerState(
         initialPage = if (currentRoute is AppRoutes.Champions) 0 else 1,
         pageCount = { 2 }
@@ -42,23 +47,21 @@ fun HomeContainer(
     val isItemsRouteSelected = pagerState.currentPage == 1
 
     Scaffold(
+        modifier = Modifier.fillMaxSize(),
         containerColor = BackgroundColor,
         bottomBar = {
-            Column {
-                HorizontalDivider(
-                    thickness = 1.dp,
-                    color = LightBeigeColor
-                )
+            Column(modifier = Modifier.background(BackgroundColor)) {
+                HorizontalDivider(thickness = 1.dp, color = LightBeigeColor)
 
                 NavigationBar(
-                    containerColor = Color.Transparent,
-                    windowInsets = WindowInsets(0)
+                    containerColor = BackgroundColor,
+                    windowInsets = WindowInsets.navigationBars
                 ) {
                     NavigationBarItem(
                         selected = isChampionRouteSelected,
                         onClick = {
                             coroutineScope.launch {
-                                pagerState.animateScrollToPage(0) // Champions
+                                pagerState.animateScrollToPage(0)
                             }
                         },
                         icon = {
@@ -80,7 +83,7 @@ fun HomeContainer(
                         selected = isItemsRouteSelected,
                         onClick = {
                             coroutineScope.launch {
-                                pagerState.animateScrollToPage(1) // Items
+                                pagerState.animateScrollToPage(1)
                             }
                         },
                         icon = {
@@ -104,7 +107,9 @@ fun HomeContainer(
     ) { padding ->
         HorizontalPager(
             state = pagerState,
-            modifier = Modifier.padding(padding)
+            modifier = Modifier
+                .fillMaxSize()
+                .padding(padding)
         ) { page ->
             when (page) {
                 0 -> ChampionsView()
