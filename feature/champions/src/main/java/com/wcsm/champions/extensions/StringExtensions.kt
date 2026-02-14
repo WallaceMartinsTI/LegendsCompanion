@@ -9,6 +9,7 @@ fun String.toParType(): ChampionParType {
         "Energy" -> ChampionParType.ENERGY
         "Fury" -> ChampionParType.RAGE
         "Heat" -> ChampionParType.HEAT
+        "None" -> ChampionParType.NONE
         "Blood Well" -> ChampionParType.BLOOD_WELL
         "Ferocity" -> ChampionParType.FEROCITY
         "Flow" -> ChampionParType.FLOW

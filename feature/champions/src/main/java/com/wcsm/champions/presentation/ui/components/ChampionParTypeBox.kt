@@ -1,4 +1,4 @@
-package com.wcsm.champions.presentation.components
+package com.wcsm.champions.presentation.ui.components
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement

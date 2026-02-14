@@ -55,7 +55,9 @@ fun AppNavigation(
                 )
             }
             entry<AppRoutes.ChampionResume> { route ->
-                ChampionSummaryView()
+                ChampionSummaryView(
+                    championId = route.championId
+                )
                 /*ChampionResumeScreen(
                     championId = route.championId,
                     onBack = { backStack.removeLastOrNull() },
