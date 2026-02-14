@@ -34,3 +34,9 @@ val ChampionTagAssassinColor = Color(0xFF2C3E50)
 val ChampionTagSupportColor = Color(0xFF16A085)
 val ChampionTagMarksmanColor = Color(0xFFD4AC0D)
 val ChampionTagUnknownColor = LightGrayColor
+
+// Champion Info Colors
+val ChampionInfoAttackColor = Color(0xFFE53935)
+val ChampionInfoDefenseColor = Color(0xFF1E88E5)
+val ChampionInfoMagicColor = Color(0xFF8E24AA)
+val ChampionInfoDifficultyColor = Color(0xFFFDD835)

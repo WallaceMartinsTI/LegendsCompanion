@@ -10,4 +10,5 @@ data class Champion(
     val image: String,
     val tags: List<ChampionTag>,
     val parType: ChampionParType,
+    val stats: ChampionStats
 )

@@ -58,7 +58,7 @@ private fun ChampionsTemplate(
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
         PageHeader(title = "CHAMPIONS")
-        Spacer(Modifier.height(15.dp))
+        Spacer(Modifier.height(16.dp))
 
         Box(
             modifier = Modifier.fillMaxSize()

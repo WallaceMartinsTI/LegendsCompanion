@@ -13,5 +13,6 @@ data class ChampionDto(
     val image: ChampionImageDto,
     val tags: List<String>,
     @SerializedName("partype")
-    val parType: String
+    val parType: String,
+    val stats: ChampionStatsDto
 )
