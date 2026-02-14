@@ -28,7 +28,7 @@ fun ChampionCard(
         modifier = Modifier.clickable { onChampionClick(championName) },
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
-        // TODO: Passar essa URL para algum Helper futuramente
+        // TODO: Pass this URL to a Helper in the future.
         AsyncImage(
             model = "https://ddragon.leagueoflegends.com/cdn/16.3.1/img/champion/$championImageName",
             contentDescription = "$championName square image.",

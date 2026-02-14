@@ -19,7 +19,7 @@ import com.wcsm.legendscompanion.presentation.ui.views.WelcomeView
 fun AppNavigation(
     modifier: Modifier = Modifier
 ) {
-    val isFirstLaunch = true // TODO: Implementar depois
+    val isFirstLaunch = true // TODO: Implement later
 
     val startRoute = if (isFirstLaunch) {
         AppRoutes.Welcome
