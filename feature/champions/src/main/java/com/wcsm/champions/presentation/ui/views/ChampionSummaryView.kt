@@ -1,11 +1,10 @@
 package com.wcsm.champions.presentation.ui.views
 
-import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.Scaffold
@@ -13,17 +12,13 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
-import coil3.compose.AsyncImage
 import com.wcsm.champions.domain.model.Champion
 import com.wcsm.champions.domain.model.ChampionInfo
 import com.wcsm.champions.domain.model.ChampionParType
@@ -36,12 +31,11 @@ import com.wcsm.champions.presentation.ui.components.ChampionStatsBox
 import com.wcsm.champions.presentation.ui.components.ChampionSummaryHeader
 import com.wcsm.champions.presentation.ui.components.ChampionTagsBox
 import com.wcsm.champions.presentation.ui.viewmodels.ChampionViewModel
+import com.wcsm.core.presentation.ui.components.NetworkImageBox
 import com.wcsm.core.presentation.ui.components.SetSystemBarsStyle
 import com.wcsm.core.presentation.ui.theme.BackgroundColor
 import com.wcsm.core.presentation.ui.theme.LegendsCompanionTheme
 import com.wcsm.core.presentation.ui.theme.LightBeigeColor
-import com.wcsm.core.utils.UnitCallback
-import com.wcsm.resources.R as ResourcesR
 
 @Composable
 fun ChampionSummaryView(
@@ -56,13 +50,11 @@ fun ChampionSummaryView(
 
     when {
         uiState.isLoading -> {
-            //ChampionSummarySkeleton()
+            //ChampionSummarySkeleton() // TODO: Implement
             Text(text = "Carregando...")
         }
 
-        uiState.champion != null -> ChampionSummaryTemplate(
-            champion = uiState.champion!!
-        )
+        uiState.champion != null -> ChampionSummaryTemplate(champion = uiState.champion!!)
 
         uiState.error != null -> Text(
             text = uiState.error ?: "Erro",
@@ -82,27 +74,18 @@ private fun ChampionSummaryTemplate(
         containerColor = BackgroundColor
     ) { paddingValues ->
         LazyColumn(
-            modifier = Modifier.fillMaxSize().padding(paddingValues),
+            modifier = Modifier
+                .fillMaxSize()
+                .padding(paddingValues),
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
             item {
-                /*Image(
-                    painter = painterResource(ResourcesR.drawable.splash_aatrox_test),
-                    contentDescription = null,
-                    modifier = Modifier.fillMaxWidth()
-                )*/
-
-                AsyncImage(
-                    model = "https://ddragon.leagueoflegends.com/cdn/img/champion/splash/${champion.id}_0.jpg",
-                    contentDescription = null,
-                    modifier = Modifier.fillMaxWidth()
+                NetworkImageBox(
+                    imageUrl = "https://ddragon.leagueoflegends.com/cdn/img/champion/splash/${champion.id}_0.jpg",
+                    contentDescription = "${champion.name} splash image.",
+                    modifier = Modifier.fillMaxWidth().height(250.dp),
+                    asyncImageModifier = Modifier.fillMaxWidth()
                 )
-
-                /*AsyncImage(
-                    model = "https://ddragon.leagueoflegends.com/cdn/16.3.1/img/champion/$championImageName",
-                    contentDescription = "$championName square image.",
-                    modifier = Modifier.size(80.dp)
-                )*/
             }
 
             stickyHeader {

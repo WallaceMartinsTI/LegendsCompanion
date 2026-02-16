@@ -71,7 +71,7 @@ private fun ChampionsTemplate(
             ) {
                 items(
                     items =uiState.champions,
-                    key = { it.id}
+                    key = { it.id }
                 ) { champion ->
                     ChampionCard(
                         championName = champion.name,

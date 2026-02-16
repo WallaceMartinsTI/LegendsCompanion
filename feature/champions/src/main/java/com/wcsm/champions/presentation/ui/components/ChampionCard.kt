@@ -14,7 +14,7 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import coil3.compose.AsyncImage
+import com.wcsm.core.presentation.ui.components.NetworkImageBox
 import com.wcsm.core.presentation.ui.theme.CinzelFontFamily
 import com.wcsm.core.presentation.ui.theme.LegendsCompanionTheme
 
@@ -29,11 +29,13 @@ fun ChampionCard(
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
         // TODO: Pass this URL to a Helper in the future.
-        AsyncImage(
-            model = "https://ddragon.leagueoflegends.com/cdn/16.3.1/img/champion/$championImageName",
+        NetworkImageBox(
+            imageUrl = "https://ddragon.leagueoflegends.com/cdn/16.3.1/img/champion/$championImageName",
             contentDescription = "$championName square image.",
-            modifier = Modifier.size(80.dp)
+            modifier = Modifier.size(80.dp),
+            asyncImageModifier = Modifier.size(80.dp)
         )
+
         Text(
             text = championName,
             style = TextStyle(
